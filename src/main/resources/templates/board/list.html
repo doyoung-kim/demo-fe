@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="board/layout/basic">
+	<th:block layout:fragment="title">
+		<title>This page is a list page</title>
+	</th:block>
+
+	<th:block layout:fragment="search">
+		<form action="search" id="searchform-header" class="searchform js__toggle active pull-right">
+			<input type="search" name="search" placeholder="Search..." class="input-search">
+			<button class="mdi mdi-magnify button-search" type="submit">
+				<i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+		</form>
+	</th:block>
+	
+	<th:block layout:fragment="content">
+		
+		<div id="listData">
+			<div  th:replace="board/list-dataList"></div>	
+		</div>
+	</th:block>
+	
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			function boardDataList(result){	
+				console.log(result);
+				jQuery('#listData').html(result);	
+			}
+			function goPage(currentPage){
+				document.frmPageList.page.value=currentPage ;	
+				sendFormAjax('ajaxList','frmPageList', 'boardDataList', 'html');
+			}
+
+			
+		</script>
+	</th:block>
+	
+
+
+
+</html>

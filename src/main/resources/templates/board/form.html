@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="board/layout/basic">
+	<th:block layout:fragment="title">
+		<title>thiThe page is a write page</title>
+	</th:block>
+
+	<th:block layout:fragment="content">
+		<div class="card-content">
+			<form name="frmBoard" class="form-horizontal" th:action="${board}?'modify/submit':'write/submit'" th:object="${board}" method="post" >
+				<!--/* update의 경우 서버로 전달할 게시글 번호 (PK) */-->
+				<input th:if="${board}"  type="hidden" name="num" th:value="${board.num}"></input>
+
+				
+				<div class="form-group">
+					<label for="title" class="col-sm-2 control-label">제목</label>
+					<div class="col-sm-10">
+						<input type="text" name="title" class="form-control" placeholder="제목을 입력해 주세요." th:value="${board}? ${board.title}" />
+					</div>
+				</div>
+
+				
+				<div class="form-group">
+					<label for="content" class="col-sm-2 control-label">내용</label>
+					<div class="col-sm-10">
+						<textarea name="contents" class="form-control" placeholder="내용을 입력해 주세요." th:text="${board}? ${board.contents}" rows="10"></textarea>
+					
+					</div>
+				</div>
+
+				<div class="btn_wrap text-center">
+					<a th:href="list" class="btn btn-default waves-effect waves-light">뒤로가기</a>
+					<button type="button" class="btn btn-primary waves-effect waves-light" onclick="javascript:insert();" >저장하기</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.card-content -->
+	</th:block>
+
+	<th:block layout:fragment="script">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+			function insert() {
+				var frm = document.frmBoard;
+				
+				if (frm.contents.value == "") {
+					alert ("내용을 입력해 주세요");
+					frm.contents.focus ();
+				} else {
+					frm.submit ();
+				}
+			}
+			/*[- end of function -]*/
+
+			/*]]>*/
+		</script>
+	</th:block>
+</html>

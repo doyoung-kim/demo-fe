@@ -1,0 +1,69 @@
+<div>
+    <div class="text-left">
+        <th>총 게시글 : <span th:text="${pagerInfo.totalCount}"></span></th>
+    </div>
+    
+    <div class="text-right" >
+             <span><a href="rest/list" target="new">raw-json</a></span>
+    </div>
+</div>
+<div class="table-responsive clearfix">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+                <th>수정일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${not #lists.isEmpty( boardList )}" th:each="board : ${boardList}">
+                <td scope="row" th:text=" ${board.num}"></td>
+                <td class="text-left">
+                    <a th:href="@{view(num=${board.num})}" th:text="${board.title}"></a>
+                </td>
+                <td th:text="${board.writeName}"></td>
+                <td th:text="${#temporals.format( board.writeDate, 'yyyy-MM-dd HH:mm:ss' )}"></td>
+                <td th:text="${#temporals.format( board.modifyDate, 'yyyy-MM-dd HH:mm:ss' )}"></td>
+            </tr>
+            
+            <tr th:unless="${not #lists.isEmpty( boardList )}">
+                <td colspan="5">조회된 결과가 없습니다.</td>
+            </tr>
+            <tr><td colspan="5">&nbsp;</td></tr>
+        </tbody>
+    </table>
+
+    <div class="btn_wrap text-right">
+        <a th:href="write" class="btn btn-primary waves-effect waves-light">Write</a>
+    </div>
+		 
+    <div class="out">
+        <div class="in">
+            <ul class="paging" ></ul>
+        <div>
+    </div>
+    <form name="frmPageList"  id="frmPageList"   method="post">
+        <input type="hidden" name="page" id="page" value=""/>
+    </form> 
+
+
+
+
+</div>
+<script th:inline="javascript">
+    jQuery(function() {
+        jQuery(".paging").pagination({
+            items: /*[[${pagerInfo.totalCount}]]*/,
+            currentPage : /*[[${pagerInfo.page}]]*/,
+            itemsOnPage: /*[[${pagerInfo.pageSize}]]*/,
+            cssStyle: 'light-theme',
+            onPageClick: function(currentPage, e){
+                goPage(currentPage);
+            }
+        });
+    });
+</script>
+

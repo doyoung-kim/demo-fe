@@ -1,0 +1,15 @@
+##############
+### local
+##############
+
+server:
+  port: 9321
+
+api:
+  board:
+    url: http://localhost:9320/api/boards   
+
+
+
+
+

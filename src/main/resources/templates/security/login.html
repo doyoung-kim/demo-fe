@@ -1,0 +1,40 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+        <head>
+               <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></meta>
+               <title>Login page</title>
+               <link href="/css/bootstrap.css"  rel="stylesheet"></link>
+               <link href="/css/app.css" rel="stylesheet"></link>
+               <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.css" />
+        </head>
+
+        <body>
+               <div id="mainWrapper">
+                       <div class="login-container">
+                              <div class="login-card">
+                                      <div class="login-form">
+                                             
+                                             <form  action="/auth/signin" method="post" class="form-horizontal">
+                                                    
+                                                     <div class="input-group input-sm">
+                                                             <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+                                                             <input type="text" class="form-control" id="username" name="id" placeholder="Enter Username" required="true"></input>
+                                                     </div>
+                                                     <div class="input-group input-sm">
+                                                             <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
+                                                             <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required="true"></input>
+                                                     </div>
+                                                    
+                                                             
+                                                     <div class="form-actions">
+                                                             <input type="submit"
+                                                                    class="btn btn-block btn-primary btn-default" value="Log in"></input>
+                                                     </div>
+                                             </form>
+                                      </div>
+                              </div>
+                       </div>
+               </div>
+
+        </body>
+</html>
